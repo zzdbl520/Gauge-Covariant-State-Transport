@@ -46,7 +46,7 @@ After cloning the repository, verify the full release with:
 sha256sum -c SHA256SUMS_RELEASE.txt
 ```
 
-The historical `SHA256SUMS.txt` is retained for the original direct-only staging; use `SHA256SUMS_RELEASE.txt` for the full published release. The two checksum manifests are updated when this README changes.
+The historical `SHA256SUMS.txt` is retained for the original direct-only staging; use `SHA256SUMS_RELEASE.txt` for the full published release. The README is intentionally excluded from both checksum manifests so documentation can be updated without invalidating the scientific-data checksums. The legacy manifest is also excluded from the full-release manifest.
 
 This repository currently documents the **LiH** portion of the manuscript, not the complete wavefunction archive for every molecular example. Consult the manuscript and supporting information for physical definitions, scope, and limitations.
 
