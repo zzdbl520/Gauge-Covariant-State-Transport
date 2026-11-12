@@ -1,0 +1,62 @@
+{
+  "status": "PASS_DIRECT_FORWARD_REVERSE",
+  "direct_nodes": 154,
+  "history_checkpoint_files": 310,
+  "histories": [
+    {
+      "history": "forward",
+      "status": "PASS",
+      "checkpoints": 155,
+      "max_abs_differences": {
+        "C": 0.0,
+        "D_mu": 0.0,
+        "eta": 0.0,
+        "leakage": 0.0,
+        "assignment_margin": 0.0,
+        "delta_mu_au": 0.0,
+        "history_direct_max_delta_E": 0.0,
+        "history_direct_max_leakage": 0.0,
+        "C_difference_from_direct": 0.0,
+        "D_mu_difference_from_direct": 0.0,
+        "W_difference_after_start_frame_alignment": 0.0
+      },
+      "history_checks": {
+        "same_point_reproducibility": true,
+        "closure": true,
+        "C_reproducibility": true,
+        "D_mu_reproducibility": true,
+        "same_composed_assignment_as_direct": true
+      },
+      "qualified": true,
+      "history_pass": true
+    },
+    {
+      "history": "reverse",
+      "status": "PASS",
+      "checkpoints": 155,
+      "max_abs_differences": {
+        "C": 0.0,
+        "D_mu": 0.0,
+        "eta": 0.0,
+        "leakage": 0.0,
+        "assignment_margin": 0.0,
+        "delta_mu_au": 0.0,
+        "history_direct_max_delta_E": 0.0,
+        "history_direct_max_leakage": 0.0,
+        "C_difference_from_direct": 0.0,
+        "D_mu_difference_from_direct": 0.0,
+        "W_difference_after_start_frame_alignment": 0.0
+      },
+      "history_checks": {
+        "same_point_reproducibility": true,
+        "closure": true,
+        "C_reproducibility": true,
+        "D_mu_reproducibility": true,
+        "same_composed_assignment_as_direct": true
+      },
+      "qualified": true,
+      "history_pass": true
+    }
+  ],
+  "note": "Replay from archived MO/CI checkpoint data using original analysis implementation."
+}

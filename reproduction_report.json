@@ -1,0 +1,23 @@
+{
+  "status": "PASS_DIRECT_LOOP_ONLY",
+  "nodes": 154,
+  "edges": 154,
+  "baseline": 64,
+  "refined": 90,
+  "max_abs_differences": {
+    "C": 0.0,
+    "D_mu": 0.0,
+    "eta": 0.0,
+    "leakage": 0.0,
+    "assignment_margin": 0.0,
+    "delta_mu_au": 0.0
+  },
+  "checks": {
+    "wavefunctions": true,
+    "edge_fidelity": true,
+    "assignment_margin": true,
+    "algebra": true
+  },
+  "history_replay": "NOT_YET_VERIFIED",
+  "note": "The archived history JSON is included as reference only; forward/reverse history wavefunctions must be staged and replayed separately before claiming complete history reproduction."
+}
