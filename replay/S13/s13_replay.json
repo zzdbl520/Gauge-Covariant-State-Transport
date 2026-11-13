@@ -1,0 +1,73 @@
+{
+  "source": "lih_public_inputs.json",
+  "m": 4,
+  "transport_orthogonality_error_max": 4.134856695058169e-14,
+  "nonclosure_C_correct_normalization_2sqrtm": 0.0003191653837014273,
+  "dipole_z": {
+    "frobenius": 0.01509458016614645,
+    "spectral": 0.009729790320533331,
+    "anchor_diagonal_max": 0.0009281721301892532,
+    "trace": 7.882583474838611e-14,
+    "pair_phase_rad": [
+      -0.0007971673242697546,
+      -0.0004236232178229699,
+      0.0004236232178223843,
+      0.000797167324270314
+    ],
+    "pair_weights_percent": {
+      "1--2": 5.4067174174121595,
+      "1--3": 4.8447741951790455,
+      "1--4": 41.83268388288768,
+      "2--3": 37.66433289318721,
+      "2--4": 4.844774195176004,
+      "3--4": 5.406717417415206
+    },
+    "pair_weights_sum_percent": 100.0000000012573,
+    "V_eigenbasis_diagonal_error": 1.633538152542027e-13
+  },
+  "checks": [
+    {
+      "check": "C",
+      "observed": 0.0003191653837014273,
+      "reference": 0.0003191653837014273,
+      "absolute_error": 0,
+      "pass": true
+    },
+    {
+      "check": "dipole_Frobenius",
+      "observed": 0.01509458016614645,
+      "reference": 0.01509458016614645,
+      "absolute_error": 0,
+      "pass": true
+    },
+    {
+      "check": "dipole_spectral",
+      "observed": 0.009729790320533331,
+      "reference": 0.0097297903,
+      "absolute_error": 2.0533330244432157e-11,
+      "pass": true
+    },
+    {
+      "check": "dipole_diagonal",
+      "observed": 0.0009281721301892532,
+      "reference": 0.0009281721,
+      "absolute_error": 3.0189253115604775e-11,
+      "pass": true
+    },
+    {
+      "check": "dipole_mode_23",
+      "observed": 37.66433289318721,
+      "reference": 37.66433,
+      "absolute_error": 0.0000028931872080306675,
+      "pass": true
+    },
+    {
+      "check": "dipole_weights_sum",
+      "observed": 100.0000000012573,
+      "reference": 100,
+      "absolute_error": 1.2573053709274973e-9,
+      "pass": true
+    }
+  ],
+  "endpoint_operator_replay": "not supplied"
+}
