@@ -1,0 +1,63 @@
+{
+  "status": "CALCULATED_FROM_ORIGINAL_CHECKPOINTS",
+  "vertices": 64,
+  "wavefunctions": 192,
+  "gap_stats": {
+    "A": {
+      "min_D34_Eh": 0.00029318323430871374,
+      "max_D34_Eh": 0.030132220536696508,
+      "min_external_Eh": 0.07070530906118044,
+      "min_width_Eh": 0.2494522067990701,
+      "max_width_Eh": 0.2655641012997565
+    },
+    "D": {
+      "min_D34_Eh": 0.006719833095489847,
+      "max_D34_Eh": 0.03603888334908145,
+      "min_external_Eh": 0.10995295825133589,
+      "min_width_Eh": 0.2723571044427162,
+      "max_width_Eh": 0.28446125621422613
+    },
+    "T": {
+      "min_D34_Eh": 0.0001889187232997358,
+      "max_D34_Eh": 0.028472599958107914,
+      "min_external_Eh": 0.07131806406690444,
+      "min_width_Eh": 0.24545128160792196,
+      "max_width_Eh": 0.2616015392927178
+    }
+  },
+  "cross_basis_stats": {
+    "A/D": {
+      "minimum_state_sigma": 0.32190634939799756,
+      "maximum_state_leakage": 0.4270069775266311,
+      "minimum_active_sigma": 0.32388806824845956,
+      "minimum_core_overlap": 0.9999976836298171
+    },
+    "A/T": {
+      "minimum_state_sigma": 0.9780704286304777,
+      "maximum_state_leakage": 0.0211952771373074,
+      "minimum_active_sigma": 0.9784690939225026,
+      "minimum_core_overlap": 0.9999984721395666
+    },
+    "D/T": {
+      "minimum_state_sigma": 0.31021681433095266,
+      "maximum_state_leakage": 0.4384681678387661,
+      "minimum_active_sigma": 0.3120229694293714,
+      "minimum_core_overlap": 0.9999992666267726
+    }
+  },
+  "active_r2_bohr2": {
+    "A": {
+      "min_corner_active_r2_bohr2": 89.02144831703819,
+      "max_corner_active_r2_bohr2": 93.13615679301289
+    },
+    "D": {
+      "min_corner_active_r2_bohr2": 45.3061485444829,
+      "max_corner_active_r2_bohr2": 47.45017696843917
+    },
+    "T": {
+      "min_corner_active_r2_bohr2": 87.14286249074114,
+      "max_corner_active_r2_bohr2": 90.87060814966112
+    }
+  },
+  "note": "Area-law regression requires the historical local/global loop data; not reconstructed here."
+}
