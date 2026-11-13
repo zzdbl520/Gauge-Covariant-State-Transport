@@ -40,3 +40,16 @@ python reconstruct_s13.py \
 The Hamiltonian eigenphase-pair percentage reported in the SI (**7.34%**) is **not independently certified by the six-check replay** in this directory. To claim this additional check as completed, execute the command above and save the resulting output.
 
 Different route-transported representations of the same endpoint operator should not be interpreted as distinct physical endpoint operators or as real-time dynamical differences.
+
+
+## Completed endpoint-operator check (14 November 2026)
+
+The full endpoint NPZ check has now passed 10/10 comparisons. The verified
+output is [`s13_full_audit.json`](s13_full_audit.json) with
+[`s13_full_audit.pair_weights.csv`](s13_full_audit.pair_weights.csv).
+The Hamiltonian 2--3 eigenphase-pair weight is **7.3353589013%**;
+the Hamiltonian Frobenius and spectral differences are
+2.79952802834e-4 and 1.79082493589e-4 Eh, respectively.
+No CASSCF was rerun. Run record:
+https://github.com/zzdbl520/Gauge-Covariant-State-Transport/actions/runs/43467979855 .
+The earlier 'not yet recorded' limitation above is superseded.
