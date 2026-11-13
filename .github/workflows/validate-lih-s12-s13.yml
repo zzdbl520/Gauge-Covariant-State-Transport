@@ -4,7 +4,7 @@ on:
     paths: [".github/workflows/validate-lih-s12-s13.yml"]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   replay:
     runs-on: ubuntu-latest
@@ -35,6 +35,20 @@ jobs:
             --loop-json analysis/loop_factor_016.json \
             --endpoint-npz wavefunctions/baseline/R_5.950000000000_F_0.011500000000.npz \
             --out ${{ runner.temp }}/s13_full_audit.json
+      - name: Commit reproducible S12 and S13 audit reports
+        run: |
+          cp ${{ runner.temp }}/s12_common_grid_audit.json replay/S12/s12_common_grid_audit.json
+          cp ${{ runner.temp }}/s13_full_audit.json replay/S13/s13_full_audit.json
+          cp ${{ runner.temp }}/s13_full_audit.pair_weights.csv replay/S13/s13_full_audit.pair_weights.csv
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add replay/S12/s12_common_grid_audit.json replay/S13/s13_full_audit.json replay/S13/s13_full_audit.pair_weights.csv
+          if ! git diff --cached --quiet; then
+            git commit -m "Deposit verified S12 common-grid and S13 endpoint-operator audit reports"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
       - name: Upload replay report artifacts
         if: always()
         uses: actions/upload-artifact@v4
