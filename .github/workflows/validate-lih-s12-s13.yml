@@ -1,0 +1,47 @@
+name: Validate LiH S12 and S13 from archived checkpoints
+on:
+  push:
+    paths: [".github/workflows/validate-lih-s12-s13.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependencies
+        run: python -m pip install --quiet "numpy<2.4" "pyscf==2.13.1"
+      - name: Restore 1,936 archived NPZ files and check every SHA256
+        run: |
+          python replay/S12/wavefunctions/unpack_wavefunctions.py --destination ${{ runner.temp }}/lih_restored
+      - name: Locate historical three-basis checkpoints
+        run: |
+          find ${{ runner.temp }}/lih_restored -maxdepth 5 -name 'R_5.800000000000_F_0.010500000000.npz' -print
+      - name: Replay S12 common-grid overlap, energies, orbital extent
+        run: |
+          python replay/S12/replay_s12_cross_basis.py \
+            --A ${{ runner.temp }}/lih_restored/records/lih_revision_augccpvdz/solutions \
+            --D ${{ runner.temp }}/lih_restored/records/lih_revision_ccpvtz/solutions \
+            --T ${{ runner.temp }}/lih_restored/records/lih_augccpvtz_production/solutions \
+            --output ${{ runner.temp }}/s12_common_grid_audit.json
+      - name: Replay S13 endpoint Hamiltonian and dipole
+        run: |
+          python replay/S13/reconstruct_s13.py \
+            --loop-json analysis/loop_factor_016.json \
+            --endpoint-npz wavefunctions/baseline/R_5.950000000000_F_0.011500000000.npz \
+            --out ${{ runner.temp }}/s13_full_audit.json
+      - name: Upload replay report artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lih-s12-s13-raw-audits
+          path: |
+            ${{ runner.temp }}/s12_common_grid_audit.json
+            ${{ runner.temp }}/s13_full_audit.json
+            ${{ runner.temp }}/s13_full_audit.pair_weights.csv
+          if-no-files-found: warn
