@@ -1,13 +1,69 @@
-# LiH Section S12: reported-value arithmetic check
+# LiH Section S12 — archived area-law replay
 
-This directory includes only a **reported-table arithmetic check** for the LiH basis and area-law comparisons. It takes previously reported numerical coefficients as inputs, rather than recomputing cross-basis electronic-state overlaps.
+**Scope:** We have restored the historical numerical records from the previous public repository,
+[`zzdbl520/electronic-state-identity`](https://github.com/zzdbl520/electronic-state-identity),
+revision `data/revision-2026-10-21/`. The copied CSV/JSON records in `historical/` are preserved
+for replay and should not be interpreted as fresh CASSCF calculations.
 
-Run from a Python 3 installation:
+## Independently replayed from numerical records
+
+Run from this directory, using only Python 3 standard-library modules:
 
 ```bash
-python check_s12_reported_arithmetic.py
+python replay_historical_area_law.py
 ```
 
-The check confirms the 0.21260% overlap-definition difference, 13.3726% / 15.4370% matched-loop basis differences, and `2 sqrt(m)=4` curvature normalization for `m=4`.
+The script recomputes, rather than copying SI values into its outputs, six S12 quantities:
 
-**Not yet validated by this directory:** molecular cross-basis overlap singular values, the 192 wavefunction checkpoints across three basis sets, or the historical grid/area-law regression inputs. This script is not a replacement for the original S12 audit and makes no claim of independently reproducing the SI S12 molecular tables.
+| Source record | Quantity | Replay result |
+| --- | --- | ---: |
+| 100 locator rectangles | Active-only area slope | 2.4381877205 |
+| Same 100 rectangles, complete overlap | Area slope | 2.4330041559 |
+| Four aug-cc-pVDZ local loops (8 segments/side) | Area slope | 2.4486701653 |
+| Four aug-cc-pVTZ local loops (8 segments/side) | Area slope | 2.1209884895 |
+| Smallest aug-cc-pVDZ local loop | C/A | 2.4456740705 |
+| Smallest aug-cc-pVTZ local loop | C/A | 2.1186230352 |
+
+The script also verifies that none of the original 100 *complete-overlap* rectangles meets
+the fidelity acceptance criterion. This is a reconstruction of **reported regressions
+from archived numerical source records**. It does not independently recompute the
+underlying wavefunction overlaps.
+
+The older `check_s12_reported_arithmetic.py` is retained as a separate, weaker check
+of SI-table arithmetic; it is not a substitute for the record-based replay above.
+
+## Cross-basis wavefunction replay — next validation step
+
+The old public archive already includes **1,936 checkpoint NPZ files**, among them
+337 aug-cc-pVDZ, 194 cc-pVTZ, and 736 augmented-triple-zeta production
+files (plus 644 refinement and 25 initial-grid records). Counts include
+optimizer candidates and duplicate baselines, not independent geometries.
+The approximately 37.8 MB compressed wavefunction archive is under
+[the old repository's `wavefunctions/` folder](https://github.com/zzdbl520/electronic-state-identity/tree/main/data/revision-2026-10-21/wavefunctions),
+with `MANIFEST.json`, provenance records and SHA256 checksums.
+
+To restore it *without rerunning CASSCF*, clone the old repository and run:
+
+```bash
+git clone https://github.com/zzdbl520/electronic-state-identity.git
+cd electronic-state-identity
+python scripts/unpack_wavefunctions.py
+```
+
+The old repository's
+[`code/run_lih_revision.py`](https://github.com/zzdbl520/electronic-state-identity/blob/main/data/revision-2026-10-21/code/run_lih_revision.py)
+and
+[`systems/lih/workflow/LiH_S4_cross_basis_audit.py`](https://github.com/zzdbl520/electronic-state-identity/blob/main/systems/lih/workflow/LiH_S4_cross_basis_audit.py)
+provide the historical calculation/analysis context. The **S4 script uses an earlier
+active-only overlap construction and is not, by itself, a validation of the
+current complete-four-electron cross-basis S12 table**.
+
+**Not yet independently recalculated here:** the S12 cross-basis state singular
+values, orbital-character measures, and all common-vertex gaps from the recovered
+NPZ files. These require selecting the corresponding 64 checkpoint files per
+basis and running the complete-overlap analysis. The original binary archive is
+not duplicated in this directory; its provenance and checksum records remain
+available in the old repository.
+
+The cross-basis fidelity failure does not invalidate the accepted **within-basis**
+LiH path-transport results.
