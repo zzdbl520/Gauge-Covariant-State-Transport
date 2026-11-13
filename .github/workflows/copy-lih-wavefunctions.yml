@@ -27,6 +27,7 @@ jobs:
           mkdir -p "$dst"
           cp "$src"/wavefunctions.tar.gz.part0* "$dst"/
           cp "$src"/MANIFEST.json "$src"/README.md "$dst"/
+          cp /tmp/electronic-state-identity/data/revision-2026-10-21/SOURCE_PROVENANCE.json "$dst"/
       - name: Verify original SHA-256 manifest
         shell: bash
         run: |
