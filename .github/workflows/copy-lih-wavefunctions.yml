@@ -55,5 +55,7 @@ jobs:
             echo "Already uploaded; no new commit."
           else
             git commit -m "Add original LiH cross-basis NPZ archive parts with checksums"
+            git fetch origin main
+            git rebase origin/main
             git push origin HEAD:main
           fi
