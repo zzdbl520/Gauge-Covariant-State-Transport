@@ -67,3 +67,22 @@ available in the old repository.
 
 The cross-basis fidelity failure does not invalidate the accepted **within-basis**
 LiH path-transport results.
+
+
+## Completed common-grid molecular replay (14 November 2026)
+
+The recovered historical NPZ checkpoints have now been independently
+reanalyzed using `replay_s12_cross_basis.py` and PySCF 2.13.1. This is a
+postprocessing calculation of complete-four-electron state overlap matrices
+using **192 archived NPZ checkpoint inputs** on 64 common vertices in each
+of three bases; no new CASSCF was run.
+
+The machine-readable result is [`s12_common_grid_audit.json`](s12_common_grid_audit.json).
+Its cross-basis minimum state singular values A/D, A/T, D/T are
+0.3219063494, 0.9780704286, 0.3102168143 respectively; all agree
+with SI Section S12. The energy gaps, leakage, active-orbital
+singular values, core overlaps and corner mean squared orbital extents
+also agree with the reported SI tables. The validated GitHub Actions
+run is [here](https://github.com/zzdbl520/Gauge-Covariant-State-Transport/actions/runs/43467979855).
+Earlier scope notes above refer to the original area-law-only stage
+and are superseded for the common-grid calculations by this section.
